@@ -4,21 +4,28 @@ public class Multithreading1 {
 
     public static void main(String[] args) {
 
-        LocalTime now = LocalTime.now();
-        System.out.println(now);
-        for (int i = 0; i < 1000;i++){
+        long startTime = System.currentTimeMillis();
+
+
+        for (int i = 0; i < 10;i++){
             System.out.print("-");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
-        for (int i = 0; i < 1000;i++){
+        for (int i = 0; i < 10;i++){
             System.out.print("*");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
-        for (int i = 0; i < 500000;i++){
-            System.out.print("#");
-        }
-        System.out.println(LocalTime.now());
-        System.out.println(LocalTime.now().getSecond()-now.getSecond());
-
+        System.out.println();
+        System.out.println("Time taken "+ (System.currentTimeMillis()-startTime));
     }
 }
